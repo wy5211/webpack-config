@@ -1,5 +1,5 @@
-const path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 /*
     入口: entry (string | arr | JOSN)
@@ -11,22 +11,19 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 */
 
 module.exports = {
-    // entry: './src/index.js',
-    // entry: [
-    //     './src/index.js',
-    //     // './src/add.js',
-    // ],
-    entry: {
-        index: ['./src/index.js', './src/subtract.js'],
-        add: './src/add.js',
-    },
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, './dist')
-    },
-    plugins: [
-        new HTMLWebpackPlugin()
-    ],
-    mode: "development"
-}
-
+  // entry: './src/index.js',
+  // entry: [
+  //     './src/index.js',
+  //     // './src/add.js',
+  // ],
+  entry: {
+    index: ['./src/index.js', './src/subtract.js'],
+    add: './src/add.js',
+  },
+  output: {
+    filename: '[name].js',
+    path: path.resolve(__dirname, './dist'),
+  },
+  plugins: [new HTMLWebpackPlugin()],
+  mode: 'development',
+};

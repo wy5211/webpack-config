@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 /*
     three shaking: 去除无用的代码
         前提：
@@ -18,58 +18,50 @@ const path = require('path')
 */
 
 module.exports = {
-    entry: './src/index.js',
-    output: {
-        filename: 'built.js',
-        path: path.resolve(__dirname, 'dist'),
-    },
-    module: {
-        rules: [
-            {
-                test: /\.less$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'less-loader',
-                ]
-            },
-            
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                ]
-            },
-            {
-                test: /\.(jpg|jpeg|png|gif)$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 8 * 1024,
-                    name: '[name].[hash:5].[ext]', 
-                    // esModule: false,
-                }
-            },
-            {
-                exclude: /\.(html|js|css|less|sass|jpg|jpeg|png|gif)/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[hash:5].[ext]',
-                }
-            }
-        ]
-    },
-    mode: 'production',
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
-        })
-    ],
-    devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
-        compress: true,
-        port: 3000,
-        open: true,
-    }
-}
+  entry: './src/index.js',
+  output: {
+    filename: 'built.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
 
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8 * 1024,
+          name: '[name].[hash:5].[ext]',
+          // esModule: false,
+        },
+      },
+      {
+        exclude: /\.(html|js|css|less|sass|jpg|jpeg|png|gif)/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash:5].[ext]',
+        },
+      },
+    ],
+  },
+  mode: 'production',
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/index.html'),
+    }),
+  ],
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    compress: true,
+    port: 3000,
+    open: true,
+  },
+};

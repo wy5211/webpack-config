@@ -1,5 +1,5 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 /*
     HMR: hot moudle replacement 模块热替换
@@ -12,66 +12,57 @@ const path = require('path')
 */
 
 module.exports = {
-    entry: [
-        './src/index.js',
-    ],
-    output: {
-        filename: 'built.js',
-        path: path.resolve(__dirname, 'dist'),
-    },
-    module: {
-        rules: [
-            {
-                test: /\.less$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'less-loader',
-                ]
-            },
-            
-            {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                ]
-            },
-            {
-                test: /\.(jpg|jpeg|png|gif)$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 8 * 1024,
-                    name: '[name].[hash:5].[ext]', 
-                    // esModule: false,
-                }
-            },
-            {
-                exclude: /\.(html|js|css|less|sass|jpg|jpeg|png|gif)/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[hash:5].[ext]',
-                }
-            },
-        ]
-    },
-    mode: 'development',
-    plugins: [
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
-        })
-    ],
-    devServer: {
-        contentBase: path.resolve(__dirname, 'dist'),
-        compress: true,
-        port: 3000,
-        // open: true,
+  entry: ['./src/index.js'],
+  output: {
+    filename: 'built.js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
 
-        hot: true,
-    },
-    // devtool: 'eval-source-map',
-    devtool: 'source-map',
-}
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8 * 1024,
+          name: '[name].[hash:5].[ext]',
+          // esModule: false,
+        },
+      },
+      {
+        exclude: /\.(html|js|css|less|sass|jpg|jpeg|png|gif)/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash:5].[ext]',
+        },
+      },
+    ],
+  },
+  mode: 'development',
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './src/index.html'),
+    }),
+  ],
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    compress: true,
+    port: 3000,
+    // open: true,
+
+    hot: true,
+  },
+  // devtool: 'eval-source-map',
+  devtool: 'source-map',
+};
 
 /*
     sourceMap: 是一种提供了源代码映射构建后代码到技术：可以方便开发者调试被压缩后的代码
@@ -122,4 +113,3 @@ module.exports = {
             hidden-source-map   只隐藏源码，会提示构建后代码错误信息
 
 */
-
