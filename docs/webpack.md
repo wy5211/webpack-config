@@ -524,15 +524,44 @@ module: {
 ```
 
 #### tree shaking
+- 作用：去掉无用的代码
+- 条件：1.mode 为 production； 2.必须使用 es module
 
-```js
-tree shaking
-作用：去掉无用的代码
-条件：1.mode 为 production； 2.必须使用 es module
+1. package.json
+- `package.josn` 中的 `"sideEffects": false` , 表示所有的代码都没有副作用(可以进行tree shaking), 可能会把 css或者 @babel/polyfill 干掉；
+- 个别文件不需要tree shaking，配置 "sideEffects": ["*.css", "*.less", "..."]
 
-package.josn 中的 "sideEffects": false , 表示所有的代码都没有副作用(可以进行tree shaking), 可能会把 css 或者 @babel/polyfill 干掉
-个别文件不需要tree shaking，配置 "sideEffects": ["*.css", "xxx"]
+```json
+"sideEffects": ["*.css", "*.less", "..."]
 ```
+
+2. webpack.config.json
+```js
+/**
+ * webpack.config.js
+*/
+optimization: {
+  // ...
+  usedExports: true,
+  sideEffects: true,
+  // ...
+}
+```
+
+3. .babelrc
+```js
+  "presets": [
+    // ...
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        // ...
+      }
+    ],
+  ]
+``` 
+
 
 #### code split
 
